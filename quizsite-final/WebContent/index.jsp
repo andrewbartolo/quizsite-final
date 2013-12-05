@@ -22,13 +22,14 @@
 <div class='navbar'>
 	<div class='navbar-inner'>
 		<ul class='nav'>
-			<li class='active'><a href='#'>Home</a></li>
-			<li><a href='quiz_setup.jsp'>Quizzes</a></li>
-			<li><a href='leaderboards.jsp'>Leaderboard</a></li>
+						<li><a href='index.jsp'>Home</a></li>
+			<li><a href='QuizLandingPage'>Quizzes</a></li>
+			<li><a href='leaderboard.jsp'>Leaderboard</a></li>
 			<%
 				if (user == null) out.println("<li><a href='login_home.html'>Log In</a></li>");
 				else {
-					out.println("<li><a href='user.jsp?whoseProfile=" + username + "'>Your User Profile</a></li>");
+					out.println("<li class='active'><a href='user.jsp'>Your User Profile</a></li>");
+					if (user.isAdmin()) out.println("<li><a href='AdminServlet'>Administrator Panel</a></li>");
 					out.println("<li><a href='ResponderServlet?action=logout'>Log Out</a></li>");
 				}
 			%>
@@ -49,7 +50,7 @@
 </div>
 
 <div class='recent-quiz'>
-	<h1>5 Most Created Quizzes Available:</h1>
+	<h1>5 Most Recent Quizzes:</h1>
 	<% 
 	ArrayList<Quiz> recentQuizzes = (ArrayList<Quiz>) request.getServletContext().getAttribute("recentQuizzes");
 	if (recentQuizzes == null) System.out.println("recentQuizzes was null");

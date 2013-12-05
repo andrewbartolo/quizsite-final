@@ -90,11 +90,16 @@
 	<div class='span6'>
 		<h3 class='muted'><%= owner %> Achievements</h3>
 		<%
+			Achievement.checkNewAchievements(whoseProfile);
 			ArrayList<Achievement> reversedAchievements = new ArrayList<Achievement>(achievements);
 			Collections.reverse(reversedAchievements);
 			
 			for (Achievement a : reversedAchievements) {
-				out.println(a.getName());
+				Date d = new Date(a.getTimeEarned());
+				SimpleDateFormat dayFt = new SimpleDateFormat("E M/dd ' at ' h:mm a");
+				
+				out.println("On " + dayFt.format(d) + ",<br>" + whoseProfile
+						+ " earned achievement <b>" + a.getName() + "</b><br><br>");
 			}
 			
 		%>
