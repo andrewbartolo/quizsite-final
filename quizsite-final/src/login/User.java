@@ -250,5 +250,25 @@ public class User {
         }
     	return quizTakenList;
     } 
+    
+    //String[] is {quiz id, quiz title, username, score}
+    public static ArrayList<String[]> getLeaderboardContents() {
+    	ArrayList<String[]> result = new ArrayList<String[]>();
+    	
+    	String query = "select QuizHistory.quizID, title, username, max(score) from QuizHistory, quizzes where quizzes.quizID=QuizHistory.quizID group by quizID order by quizID;";
+    	
+    	ResultSet rs = DBConnection.getResult(query);
+        try {
+                while (rs.next() ) {
+                	String[] entry = new String[] {rs.getString("quizID"), rs.getString("title"), rs.getString("username"), rs.getString("max(score)")};
+                	result.add(entry);
+                }
+
+        } catch (SQLException e) {
+                e.printStackTrace();
+        }
+    	
+    	return result;
+    }
 
 }
