@@ -59,36 +59,15 @@ public class CheckQuizServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		
-		out.println("<!DOCTYPE html>");
-		out.println("<html>");
+		out.println("<?xml version=\"1.0\" encoding=\"ISO-8859-1\" ?>");
+		out.println("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\""
+				      + " \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">");
+		out.println("<html xmlns='http://www.w3.org/1999/xhtml'>");
 		out.println("<head>");
-		out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
-		out.println("<link rel='stylesheet' href='css/bootstrap.css' type='text/css/'>");
-		//out.println("<link rel='stylesheet' href='style/QuizLandingPage.css'>");
-		out.println("<title>Quiz " + quiz.getQuizID() + "</title>");
+		out.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">");
+		out.println("<title>Quiz " + quiz.getQuizID() + " Results</title>");
 		out.println("</head>");
 		out.println("<body>");
-		
-	    out.println("<div class='container'>");
-	    out.println("<h1>QuizSite</h1>");
-	    out.println("</div>");
-	    
-	    out.println("<div class='navbar'>");
-    	out.println("<div class='navbar-inner'>");
-    	out.println("<ul class='nav'>");
-    	out.println("<li><a href='index.jsp'>Home</a></li>");
-    	out.println("<li class='active'><a href='QuizLandingPage'>Quizzes</a></li>");
-    	out.println("<li><a href='leaderboard.jsp'>Leaderboard</a></li>");
-    	if (user == null) out.println("<li><a href='login_home.html'>Log In</a></li>");
-    	else {
-    		out.println("<li><a href='user.jsp'>Your User Profile</a></li>");
-    		if (user.isAdmin()) out.println("<li><a href='AdminServlet'>Administrator Panel</a></li>");
-    		out.println("<li><a href='ResponderServlet?action=logout'>Log Out</a></li>");
-    	}
-    	out.println("</ul>");
-    	out.println("</div>");
-    	out.println("</div>");
-		
 		out.println("<h1>" + quiz.getTitle() + "</h1>"); 
 		out.println("<h3>" + quiz.getDescription() + "</h3>");
 		out.println("<p>Start Time: " + sdf.format(startTime) + "</p>");
@@ -107,12 +86,16 @@ public class CheckQuizServlet extends HttpServlet {
 					tempResponseList.add(tempResponse);
 					out.println("<p>Your Answer: " + tempResponse + "</p>");
 					if (quiz.qlist.get(i).getOrdered() == true){
+						if (!quiz.qlist.get(i).getMultAnswers().get(j).isEmpty()){
 					out.println("<p>Preferred Answer: " + quiz.qlist.get(i).getMultAnswers().get(j).get(0) + "</p>");
+						}
 					}
 				}
 				if (quiz.qlist.get(i).getOrdered() == false){
 					for (int j = 0; j < quiz.qlist.get(i).getMultAnswers().size(); j++){
+						if (!quiz.qlist.get(i).getMultAnswers().get(j).isEmpty()){
 						out.println("<p>All Possible Answer: " + quiz.qlist.get(i).getMultAnswers().get(j).get(0) + "</p>");
+						}
 					}
 				}
 			} else if (quiz.qlist.get(i).getType() == 3 && quiz.qlist.get(i).getNumAns()> 1){
@@ -129,7 +112,9 @@ public class CheckQuizServlet extends HttpServlet {
 			} else{
 			tempResponse = request.getParameter("response" + i);
 			out.println("<p>Your Answer: " + tempResponse + "</p>");
+			if (!quiz.qlist.get(i).possibleAnswers.isEmpty()){
 			out.println("<p>Preferred Answer: " + quiz.qlist.get(i).possibleAnswers.get(0) + "</p>");
+			}
 			tempResponseList.add(tempResponse);
 			}
 			if (quiz.qlist.get(i).checkAnswer(tempResponseList)){
