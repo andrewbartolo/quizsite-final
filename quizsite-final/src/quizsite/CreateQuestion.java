@@ -88,7 +88,12 @@ public class CreateQuestion extends HttpServlet {
 		case 1: //process question-response-multiple
 			query = request.getParameter("query");
 			boolean ordered = request.getParameter("ordered").equals("true");
-			int numAns = Integer.parseInt(request.getParameter("numAns"));
+			int numAns = 1;
+			if (request.getParameter("numAns") !=""){
+				numAns = Integer.parseInt(request.getParameter("numAns"));
+				if (numAns > 20) numAns = 20;
+				if (numAns < 1) numAns = 1;
+			}
 			List<List <String>> multAnsLists = new ArrayList<List<String>>();
 			List <String> ansList = new ArrayList<String>();
 			
@@ -149,7 +154,7 @@ public class CreateQuestion extends HttpServlet {
 		request.getSession().setAttribute("quiz",quiz);
 
 		if (finished.equals("Next Question")){
-		RequestDispatcher dispatch = request.getRequestDispatcher("question_types.jsp");
+		RequestDispatcher dispatch = request.getRequestDispatcher("question_types.html");
 		dispatch.forward(request, response);
 		}else{
 			RequestDispatcher dispatch = request.getRequestDispatcher("Quiz_creation_summary.jsp");

@@ -64,25 +64,35 @@ public class CreateQuiz extends HttpServlet {
 		
 		//load quizID
 		String id = "0";
+		int i = 0,j = 0;
 		try {
 			Statement stmt = DatabaseUtils.setUp();
 			ResultSet rs = stmt.executeQuery("SELECT max(quizID) FROM quizzes");
 			while(rs.next()){
-				id = rs.getString("max(quizID)");
-				
+				id = rs.getString("max(quizID)");			
 			}
+			if (id == null){
+				id = "0";
+			}
+			i = Integer.parseInt(id);
+			
+			rs = stmt.executeQuery("SELECT max(quizID) FROM questions");
+			while(rs.next()){
+				id = rs.getString("max(quizID)");			
+			}
+			if (id == null){
+				id = "0";
+			}
+			j = Integer.parseInt(id);
 		} catch (SQLException e) {
 					e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 					e.printStackTrace();
 		}
-		if (id == null){
-			id = "0";
-		}
-		int i = Integer.parseInt(id);
+		int quizid = Math.max(i, j);
 		
 		quiz.setCreator(creator);
-		quiz.setQuizID(String.valueOf(i+1));
+		quiz.setQuizID(String.valueOf(quizid+1));
 		quiz.setTitle(title);
 		quiz.setDescription(description);
 		quiz.setCategory(category);
@@ -95,7 +105,7 @@ public class CreateQuiz extends HttpServlet {
 		
 		request.getSession().setAttribute("quiz",quiz);
 		
-		RequestDispatcher dispatch = request.getRequestDispatcher("question_types.jsp");
+		RequestDispatcher dispatch = request.getRequestDispatcher("question_types.html");
 		dispatch.forward(request, response);
 		
 		

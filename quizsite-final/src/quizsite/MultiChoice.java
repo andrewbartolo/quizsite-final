@@ -62,6 +62,14 @@ public class MultiChoice extends Question{
 	public boolean checkAnswer(List<String> response) {
 		int numMatched = 0;
 		Set<String> possAnswers = new HashSet<String>();
+		if (possibleAnswers.isEmpty()){
+			grade+=score;
+			return true;
+		}
+		if (possibleAnswers.get(0) == ""){
+			grade +=score;
+			return true;
+		}
 		possAnswers.addAll(possibleAnswers);
 		for (int i = 0; i < response.size(); ++i) {
 			if (possAnswers.contains(response.get(i))) {
