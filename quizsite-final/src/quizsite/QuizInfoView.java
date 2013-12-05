@@ -47,7 +47,7 @@ public class QuizInfoView extends HttpServlet {
         		out.println("<html>");
         		out.println("<head>");
         		out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
-        		out.println("<link rel='stylesheet' href='css/bootstrap.css' type='text/css/'>");
+        		out.println("<link rel='stylesheet' href='css/bootstrap.css' type='text/css'>");
         		//out.println("<link rel='stylesheet' href='style/QuizLandingPage.css'>");
         		out.println("<title>Quiz " + quiz.getTitle() + "</title>");
         		out.println("</head>");
