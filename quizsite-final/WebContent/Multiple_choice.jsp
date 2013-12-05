@@ -53,8 +53,8 @@
 <p><input type="text" name="option1" /></p>
 <p><input type="text" name="option2" /></p>
 <p><input type="text" name="option3" /></p>
-<p>Answers (please list all the correct answers, separated by ','): <input type="text" name="answer" /></p>
-<p>Maximum score (please use numbers, e.g. 1,2,3, etc.): <input type="text" name="score" /></p>
+<p>Answers (please list all the correct answers in numbers separated by ',', e.g. 1,2): <input type="text" name="answer" /></p>
+<p>Maximum score (please use numbers, e.g. 1): <input type="text" name="score" /></p>
 <input type="submit" name = "sb" value = "Next Question">
 <input type="submit" name = "sb" value = "Submit Quiz">
 <input name="questiontype" type="hidden" value="3"></input>
