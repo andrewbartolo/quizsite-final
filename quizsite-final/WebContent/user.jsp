@@ -22,6 +22,7 @@
 	
 	String owner = (isOwnProfile) ? "Your" : whoseProfile + "'s";
 	
+	Achievement.checkNewAchievements(whoseProfile);
 	ArrayList<Achievement> achievements = Achievement.getAllAchievements(whoseProfile);
 	ArrayList<History> history = History.getTakenQuizzes(whoseProfile);
 	ArrayList<Quiz> quizzes = (ArrayList<Quiz>)application.getAttribute("allQuizzes");
@@ -90,7 +91,6 @@
 	<div class='span6'>
 		<h3 class='muted'><%= owner %> Achievements</h3>
 		<%
-			Achievement.checkNewAchievements(whoseProfile);
 			ArrayList<Achievement> reversedAchievements = new ArrayList<Achievement>(achievements);
 			Collections.reverse(reversedAchievements);
 			
@@ -154,7 +154,7 @@
     			out.println("<h3 class='muted'>Your Inbox</h3>");
     			ArrayList<Message> recd = user.getReceivedMessages();
     			ArrayList<Message> reversedMessages = new ArrayList(recd);
-    			Collections.reverse(reversedMessages);
+    			//Collections.reverse(reversedMessages);
     			for (Message m : reversedMessages) {
     				String str = "<li>";
     				
