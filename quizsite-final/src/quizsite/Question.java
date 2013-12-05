@@ -119,9 +119,7 @@ public class Question {
 			return true;
 		}
 		for (String answer : possibleAnswers) {
-			System.out.println(answer);
 			if (answer.isEmpty()){
-				System.out.println("shabi");
 				grade += score;
 				return true;
 			}
