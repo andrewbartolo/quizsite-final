@@ -12,11 +12,7 @@
 		username = "guest";
 	}
 	
-	// warning below is unavoidable, I think... should be fine
-	ArrayList<User> allUsers = user.getAllUsers();
-	ArrayList<Quiz> allQuizzes = (ArrayList<Quiz>)application.getAttribute("allQuizzes");
-	ArrayList<Announcement> allAnnouncements = user.getAllAnnouncements();
-	
+	ArrayList<String[]> leaderboardContents = user.getLeaderboardContents();
 %>
 <!DOCTYPE html>
 <html>
@@ -54,11 +50,14 @@
 </div>
 
 <div class='row'>
-	<div class='span12'>
+	<div class='span12' style='text-align: center;'>
 		<!--  need # of users, # of quizzes taken -->
 		<h4 class="muted text-center">Best Scores on Quizzes</h4>
-		<h2>Site Statistics</h2>
-		<p><i>Total # of users:</i> <b><%= user.getNumUsers() %></b><br><i>Total # of quizzes taken:</i> <b><%= user.getNumQuizTaken() %></b></p>
+		<%
+			for (String[] sArray : leaderboardContents) {
+				out.println(" [" + sArray[0] + " | " + sArray[1] + "]<br>");
+			}
+		%>
 	</div>
 </div>
 
