@@ -72,7 +72,16 @@
 	</div>
 	<div class='span4'>
 	<h3 class="muted text-center">Most Popular Quizzes</h3>
-	
+	<%
+		ArrayList<Integer[]> quizStats = User.getQuizTakenTimes();
+		
+		for (int i = 0; i < quizStats.size(); ++i) {
+			Integer[] iArray = quizStats.get(i);
+			
+			
+			
+		}
+	%>
 	</div>
 	<div class='span4'>
 	<h3 class="muted text-center">Announcements</h3>
