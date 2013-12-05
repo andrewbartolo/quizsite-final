@@ -1,0 +1,49 @@
+@CHARSET "ISO-8859-1";
+
+p.stars {
+  overflow: hidden;
+  zoom: 1;
+}
+p.stars span {
+  /*width: 500px;*/
+  width: 250px;
+  /*height: 100px;*/
+  height: 50px;
+  position: relative;
+  float: left;
+  
+}
+p.stars span input {
+  float: left;
+  position: absolute;
+  left: 0;
+  top: 0;
+  /*width: 100px;*/
+  width: 50px;
+  height: 0;
+  /*padding-top: 100px;*/
+  padding-top: 50px;
+  overflow: hidden;
+}
+p.stars span{background: url("../img/star-inactive-scaled.png");}
+
+p.stars span input.star-1{z-index:29; /*width:100px;*/ width:50px;}
+p.stars span input.star-2{z-index:27; /*width:200px;*/ width:100px;}
+p.stars span input.star-3{z-index:25; /*width:300px;*/ width:150px;}
+p.stars span input.star-4{z-index:23; /*width:400px;*/ width:200px;}
+p.stars span input.star-5{z-index:21; /*width:500px;*/ width:250px;}
+p.stars span input.star-1-selected{z-index:29; /*width:100px;*/ width:50px;}
+p.stars span input.star-2-selected{z-index:27; /*width:200px;*/ width:100px;}
+p.stars span input.star-3-selected{z-index:25; /*width:300px;*/ width:150px;}
+p.stars span input.star-4-selected{z-index:23; /*width:400px;*/ width:200px;}
+p.stars span input.star-5-selected{z-index:21; /*width:500px;*/ width:250px;}
+ 
+p.stars span input.star-1:hover, p.stars span input.star-1.active, p.stars span input.star-1:focus, p.stars span input.star-1-selected,
+p.stars span input.star-2:hover, p.stars span input.star-2.active, p.stars span input.star-2:focus, p.stars span input.star-2-selected,
+p.stars span input.star-3:hover, p.stars span input.star-3.active, p.stars span input.star-3:focus, p.stars span input.star-3-selected,
+p.stars span input.star-4:hover, p.stars span input.star-4.active, p.stars span input.star-4:focus, p.stars span input.star-4-selected,
+p.stars span input.star-5:hover, p.stars span input.star-5.active, p.stars span input.star-5:focus, p.stars span input.star-5-selected
+{
+    background:url("../img/star-active-scaled.png") repeat-x center right;
+    outline: 0;
+}
