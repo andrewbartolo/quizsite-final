@@ -77,6 +77,16 @@ public class AdminServlet extends HttpServlet {
 				return;
 			}
 			
+			if (action.equals("clearQuizHistory")) {
+				int quizToClear = Integer.parseInt((String)request.getParameter("quiz"));
+				System.out.println("Attempting to clear history for quiz #" + quizToClear);
+				
+				user.removeQuizHistory(quizToClear);
+				
+				request.getRequestDispatcher("RefreshAllQuiz").forward(request, response);
+				return;
+			}
+			
 			
 			
 			

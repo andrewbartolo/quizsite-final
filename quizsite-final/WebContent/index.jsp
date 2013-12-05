@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.*, login.*, quizsite.*"%>
+<%@ page import="java.util.*, login.*, quizsite.*, java.text.*"%>
 <%-- Note - the below scriplet establishes username as an *instance* variable. --%>
 <% 
 	User user = (User)session.getAttribute("user");
 	String username = (user != null) ? user.getUserName() : "guest";
+	ArrayList<Announcement> announcements = (new User("")).getAllAnnouncements();
 %>
 <!DOCTYPE html>
 <html>
@@ -46,17 +47,17 @@
     	if (user == null) out.println("<a href='#' class='btn btn-large btn-danger'>Create a Quiz</a>");
     	else out.println("<a href='quiz_setup.jsp' class='btn btn-large btn-success'>Create a Quiz</a>");
     %>
-
 </div>
 
-<div class='recent-quiz'>
-	<h1>5 Most Recent Quizzes:</h1>
+<div class='row'>
+	<div class='span4'>
+	<h3 class="muted text-center">Most Recent Quizzes</h3>
 	<% 
 	ArrayList<Quiz> recentQuizzes = (ArrayList<Quiz>) request.getServletContext().getAttribute("recentQuizzes");
 	if (recentQuizzes == null) System.out.println("recentQuizzes was null");
 	if (recentQuizzes != null) for (Quiz quiz : recentQuizzes) {
 			out.println("<div class='quiz'>");
-			out.println("<li>");
+			//out.println("<li>");
 			out.println("<form action='QuizInfoServlet' method='GET'>");
 			out.println("<input name='quizID' type='hidden' value='" + quiz.getQuizID() + "'>");
 			out.println("<ul style='list-style: none;'>");
@@ -64,58 +65,32 @@
 			out.println("<input type='submit' value='" + quiz.getTitle() + "'>");
 			out.println("</li>");
 			out.println("</form>");
-			out.println("</li>");
+			//out.println("</li>");
 			out.println("</div>");
 	}
 		%>
-		
-</div>
-
-
-
-<div class='row'>
+	</div>
 	<div class='span4'>
-		<ul class='nav nav-list'>
-			<li class='nav-header'>Who are we?</li>
-			<li class='active'><a href='#'>Home</a>
-			<li><a href='#'>Option 1</a>
-			<li><a href='#'>Option 2</a>
-			<li><a href='#'>Option 3</a>
-			<li><a href='#'>Option 4</a>
-			<li class='nav-header'>Our friends</li>
-			<li><a href='#'>Google</a>
-			<li><a href='#'>Quizlet</a>
-			<li><a href='#'>Wikipedia</a>
-			<li><a href='#'>Quora</a>
-			<li><a href='#'>Jeopardy! Online</a>
-		</ul>
+	<h3 class="muted text-center">Most Popular Quizzes</h3>
+	
 	</div>
-	<div class='span8'>
-		<h3>Some Additional Announcements</h3>
-		<p>The site will be going down for maintenance on Thursday, Nov. 28 (Thanksgiving).</p>
-		<h3>Some Announcements</h3>
-		<p>Are you a quiz-taking champ?  If so, check out the <a href='leaderboards.jsp'>leaderboards</a>
-		to see who's the current champ of QuizSite!</p>
+	<div class='span4'>
+	<h3 class="muted text-center">Announcements</h3>
+		<%
+		for (int i = announcements.size() - 1; i >= 0; --i) {
+			Announcement a = announcements.get(i);
+			
+			Date d = new Date(a.getTime());
+			SimpleDateFormat dayFt = new SimpleDateFormat("E M/dd ' at ' h:mm a");
+		
+			out.println("On " + dayFt.format(d) + ", " + a.getUserName()
+					+ " posted:<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>" + a.getContent() + "</i>"
+					+ " <br><br>");
+		}
+		%>
 	</div>
 </div>
 
-<div class="row">
-	<div class="span4">
-        <h4 class="muted text-center">Meet Our Clients</h4>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-        <a href="#" class="btn"><i class="icon-user"></i> Our Clients</a>
-    </div>
-    <div class="span4">
-        <h4 class="muted text-center">Know Our Employees</h4>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-        <a href="#" class="btn btn-success"><i class="icon-star icon-white"></i> Our Employees</a>
-    </div>
-    <div class="span4">
-        <h4 class="muted text-center">Reach Us</h4>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-        <a href="#" class="btn btn-info">Contact Us</a>
-    </div>
-</div>
 
 <hr>
 <div class="footer">
