@@ -231,24 +231,23 @@ public class User {
         return maxScore;
     }
     
-    public static ArrayList<Integer[]> getQuizTakenTimes() {
-    	ArrayList<Integer[]> quizTakenList = new ArrayList<Integer[]>();
+    //String[] is {quiz id, quiz title, number of times taken}
+    public static ArrayList<String[]> getQuizTakenTimes() {
+    	ArrayList<String[]> result = new ArrayList<String[]>();
     	
-    	String query = "select quizID, count(*) from QuizHistory group by quizID;";
+    	String query = "select QuizHistory.quizID, title, count(*) from QuizHistory, quizzes where quizzes.quizID=QuizHistory.quizID group by quizID order by quizID;";
     	
     	ResultSet rs = DBConnection.getResult(query);
         try {
                 while (rs.next() ) {
-                	int quizId = Integer.parseInt(rs.getString("quizID"));
-                	int timesTaken = Integer.parseInt(rs.getString("count(*)"));
-                	Integer[] quizTaken = new Integer[]{quizId, timesTaken};
-                	quizTakenList.add(quizTaken);
+                	String[] entry = new String[] {rs.getString("quizID"), rs.getString("title"), rs.getString("count(*)")};
+                	result.add(entry);
                 }
 
         } catch (SQLException e) {
                 e.printStackTrace();
         }
-    	return quizTakenList;
+    	return result;
     } 
     
     //String[] is {quiz id, quiz title, username, score}
@@ -269,6 +268,23 @@ public class User {
         }
     	
     	return result;
+    }
+    
+    public static String getQuizTitle(int quizId) {
+    	String title = new String();
+    	String query = "select title from quizzes where quizID = " + Integer.toString(quizId)+";";
+    	ResultSet rs = DBConnection.getResult(query);
+        try {
+                if (rs.next() ) {
+                	title = rs.getString("title");
+                }
+
+        } catch (SQLException e) {
+                e.printStackTrace();
+        }
+        
+        return title;
+    	
     }
 
 }
