@@ -110,8 +110,8 @@ public class TakeQuizViewImmCorr extends HttpServlet {
 			for (int j = 0; j < quiz.qlist.get(quizQuestionIndex-1).getNumAns(); j++){
 				String tempResponse = request.getParameter("response"+(quizQuestionIndex-1)+j);
 				out.println("<p>Your Answer: " + tempResponse + "</p>");
-				if (!quiz.qlist.get(quizQuestionIndex-1).getOrdered() == true){
-					if(quiz.qlist.get(quizQuestionIndex-1).getMultAnswers().get(j).isEmpty()){
+				if (quiz.qlist.get(quizQuestionIndex-1).getOrdered() == true){
+					if(!quiz.qlist.get(quizQuestionIndex-1).getMultAnswers().get(j).isEmpty()){
 				out.println("<p>Preferred Answer: " + quiz.qlist.get(quizQuestionIndex-1).getMultAnswers().get(j).get(0) + "</p>");
 				}
 				}
