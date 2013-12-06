@@ -25,6 +25,7 @@
 	Achievement.checkNewAchievements(whoseProfile);
 	ArrayList<Achievement> achievements = Achievement.getAllAchievements(whoseProfile);
 	ArrayList<History> history = History.getTakenQuizzes(whoseProfile);
+	ArrayList<History> creationHistory = History.getCreatedQuizzes(whoseProfile);
 	@SuppressWarnings("unchecked")
 	ArrayList<Quiz> quizzes = (ArrayList<Quiz>)application.getAttribute("allQuizzes");
 %>
@@ -71,7 +72,10 @@
 			        + "<ul class='dropdown-menu' role='menu'>";
 			        
 			        for (History h : user.getTakenQuizzes()) {
-			        	str += "<li><a href='#'>" + User.getQuizTitle(h.getQuizId()) + "</a></li>";
+			        	str += "<li><a href='";
+			        	str += "ResponderServlet?action=challenge&userToChallenge=" + whoseProfile;
+			        	str += "&quizToChallenge=" + h.getQuizId();
+			        	str += "'>" + User.getQuizTitle(h.getQuizId()) + "</a></li>";
 			        }
 			        
 			        str += "</ul>"
@@ -134,8 +138,8 @@
 </div>
 
 <div class="row">
-	<div class="span6">
-        <h3 class='muted'><%= owner %> History</h3>
+	<div class="span4">
+        <h3 class='muted'><%= owner %> Quizzes Taken</h3>
         <%
 			ArrayList<History> reversedHistory= new ArrayList<History>(history);
 			Collections.reverse(reversedHistory);
@@ -160,7 +164,32 @@
 			
 		%>
     </div>
-    <div class="span6">
+    <div class='span4'>
+		<h3 class='muted'><%= owner %> Quizzes Created</h3>
+		        <%
+			ArrayList<History> reversedCreationHistory= new ArrayList<History>(creationHistory);
+			Collections.reverse(reversedCreationHistory);
+			
+			
+			
+			for (History h : reversedCreationHistory) {
+				String quizTitle = null;
+				for (Quiz q : quizzes) {
+					if (Integer.parseInt(q.getQuizID()) == h.getQuizId()) {
+						quizTitle = q.getTitle();
+					}
+				}
+				
+				Date d = new Date(h.getEndTime());
+				SimpleDateFormat dayFt = new SimpleDateFormat("E M/dd ' at ' h:mm a");
+				
+				out.println(h.getUserName()
+						+ " created quiz:<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>" + quizTitle + "</i><br><br>");
+			}
+			
+		%>
+	</div>
+    <div class="span4">
     <ul class='nav nav-list'>
 		
     	<%
@@ -168,7 +197,7 @@
     			out.println("<h3 class='muted'>Your Inbox</h3>");
     			ArrayList<Message> recd = user.getReceivedMessages();
     			ArrayList<Message> reversedMessages = new ArrayList(recd);
-    			//Collections.reverse(reversedMessages);
+    			Collections.reverse(reversedMessages);
     			for (Message m : reversedMessages) {
     				String str = "<li>";
     				
@@ -179,10 +208,24 @@
     					str += "[ <a href='ResponderServlet?action=acceptFriendRequest&userWhoSentRequest=" + m.getFromUser() + "' style='color: green; width: 20px;'>Accept</a>";
     					str += " | <a href='ResponderServlet?action=rejectFriendRequest&userWhoSentRequest=" + m.getFromUser() + "' style='color: red; width: 20px;'>Reject</a> ]";
     					str += "</span>";
+    					str += "</li><br>";
+    					out.write(str);
     				}
-    				str += "</li>";
-    				
-    				out.write(str);
+    				else if (m.getType() == Message.MESSAGE_CHALLENGE) {
+    					String quizIDString = m.getContent().substring((m.getContent().indexOf("?")) + 1);
+    					int quizID = Integer.parseInt(quizIDString);
+    					
+    					System.out.println(quizID);
+    					
+    					str = str.substring(0, str.indexOf("?") + 1);
+    					str += "<span class=''><a href='QuizInfoServlet?quizID=" + quizID + "'> Take the Quiz</a></span>";
+    					str += "</li><br>";
+    					out.write(str);
+    				}
+    				else {
+    					str += "</li><br>";
+    					out.write(str);
+    				}
     			}
     		}
     		else {

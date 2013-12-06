@@ -81,7 +81,7 @@
 
 		for (int i = 0; i < Math.min(5, quizStats.size()); ++i) {
 			String[] iArray = quizStats.get(i);
-			out.println(iArray[1] + " - Taken <b>" + iArray[0] + "</b> times <br><br>");
+			out.println(iArray[1] + " - Taken <b>" + iArray[2] + "</b> times <br><br>");
 			
 			
 		}
@@ -113,7 +113,7 @@
 
 <hr>
 <div class="footer">
-	<p>&copy; 2013</p>
+	<p>&copy; 2013 The Quizzap! Team. All rights reserved.</p>
 </div>
 
 <script src='http://code.jquery.com/jquery-1.10.1.js'></script>

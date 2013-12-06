@@ -55,7 +55,7 @@
 		<h4 class="muted text-center">Best Scores on Quizzes</h4>
 		<%
 			for (String[] sArray : leaderboardContents) {
-				out.println(" [" + sArray[0] + " | " + sArray[1] + "]<br>");
+			out.println("<b>" + sArray[2] + "</b> scored <b>" + sArray[3] + "</b> on <b>" + sArray[1] + "</b><br>");
 			}
 		%>
 	</div>
