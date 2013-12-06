@@ -110,14 +110,18 @@ public class TakeQuizViewImmCorr extends HttpServlet {
 			for (int j = 0; j < quiz.qlist.get(quizQuestionIndex-1).getNumAns(); j++){
 				String tempResponse = request.getParameter("response"+(quizQuestionIndex-1)+j);
 				out.println("<p>Your Answer: " + tempResponse + "</p>");
-				if (quiz.qlist.get(quizQuestionIndex-1).getOrdered() == true){
+				if (!quiz.qlist.get(quizQuestionIndex-1).getOrdered() == true){
+					if(quiz.qlist.get(quizQuestionIndex-1).getMultAnswers().get(j).isEmpty()){
 				out.println("<p>Preferred Answer: " + quiz.qlist.get(quizQuestionIndex-1).getMultAnswers().get(j).get(0) + "</p>");
+				}
 				}
 			}
 			if (quiz.qlist.get(quizQuestionIndex-1).getOrdered() == false){
 				for (int j = 0; j < quiz.qlist.get(quizQuestionIndex-1).getMultAnswers().size(); j++){
+					if(!quiz.qlist.get(quizQuestionIndex-1).getMultAnswers().get(j).isEmpty()){
 					out.println("<p>All Possible Answer: " + quiz.qlist.get(quizQuestionIndex-1).getMultAnswers().get(j).get(0) + "</p>");
-				}
+					}
+					}
 			}
 		} else if (quiz.qlist.get(quizQuestionIndex-1).getType() == 3 && quiz.qlist.get(quizQuestionIndex-1).getNumAns()> 1){
 			for (int j = 0; j < quiz.qlist.get(quizQuestionIndex-1).getOptions().size(); j++){
