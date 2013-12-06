@@ -62,10 +62,13 @@
 			out.println("<input name='quizID' type='hidden' value='" + quiz.getQuizID() + "'>");
 			out.println("<ul style='list-style: none;'>");
 			out.println("<li>");
-			out.println("<input type='submit' value='" + quiz.getTitle() + "'>");
+			if (user == null) {
+				out.println("<button type=\"button\" disabled>" + quiz.getTitle() + "</button>");
+			} else {
+				out.println("<input type=\"submit\" value=\"" + quiz.getTitle() + "\"/>");
+			}
 			out.println("</li>");
 			out.println("</form>");
-			//out.println("</li>");
 			out.println("</div>");
 	}
 		%>
