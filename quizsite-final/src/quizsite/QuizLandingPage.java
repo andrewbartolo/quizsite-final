@@ -54,6 +54,8 @@ public class QuizLandingPage extends HttpServlet {
 	    out.println("<h1>QuizSite</h1>");
 	    out.println("</div>");
 	    
+	    
+	    
 	    out.println("<div class='navbar'>");
     	out.println("<div class='navbar-inner'>");
     	out.println("<ul class='nav'>");
@@ -68,6 +70,12 @@ public class QuizLandingPage extends HttpServlet {
     	}
     	out.println("</ul>");
     	out.println("</div>");
+    	out.println("</div>");
+    	
+    	
+    	out.println("<div class='hero-unit'>");
+    	out.println("<h1>All Quizzes</h1>");
+    	out.println("<p>Have a look at our awesome selection of quizzes!  Search based on a category or tag, or just pick one from the list below.</p>");
     	out.println("</div>");
 		
     	out.println("<div class='row'>");
@@ -97,8 +105,6 @@ public class QuizLandingPage extends HttpServlet {
 		out.println("<div>");
 		out.println("<div class='row'>");
 		out.println("<div class='span12'>");
-		out.println("<h1 style='text-align: center;'>All Quizzes</h1>");
-		out.println("<p style='text-align: center;'>Quizzes available:</p>");
 		out.println("<ul>");
 		@SuppressWarnings("unchecked")
 		ArrayList<Quiz> allQuizzes = (ArrayList<Quiz>) request.getServletContext().getAttribute("allQuizzes");
