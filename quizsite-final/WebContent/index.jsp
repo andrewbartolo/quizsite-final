@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel='stylesheet' href='css/bootstrap.css' type='text/css/'>
+<link rel='stylesheet' href='css/bootstrap.css' type='text/css'>
 <title>QuizSite</title>
 </head>
 <body>
@@ -58,17 +58,30 @@
 	if (recentQuizzes != null) for (Quiz quiz : recentQuizzes) {
 			out.println("<div class='quiz'>");
 			//out.println("<li>");
-			out.println("<form action='QuizInfoServlet' method='GET'>");
+			if (user != null) out.println("<form action='QuizInfoServlet' method='GET'>");
 			out.println("<input name='quizID' type='hidden' value='" + quiz.getQuizID() + "'>");
 			out.println("<ul style='list-style: none;'>");
 			out.println("<li>");
+
 			if (user == null) {
 				out.println("<button type=\"button\" disabled>" + quiz.getTitle() + "</button>");
 			} else {
 				out.println("<input type=\"submit\" value=\"" + quiz.getTitle() + "\"/>");
 			}
+
+			
+			String str = "<input type='submit' value='" + quiz.getTitle() + "'";
+			if (user == null) str += " disabled";
+			str += ">";
+			
+			out.println(str);
+
 			out.println("</li>");
+
 			out.println("</form>");
+
+			if (user != null) out.println("</form>");
+
 			out.println("</div>");
 	}
 		%>

@@ -44,7 +44,7 @@ public class QuizLandingPage extends HttpServlet {
 		out.println("<html>");
 		out.println("<head>");
 		out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
-		out.println("<link rel='stylesheet' href='css/bootstrap.css' type='text/css/'>");
+		out.println("<link rel='stylesheet' href='css/bootstrap.css' type='text/css'>");
 		//out.println("<link rel='stylesheet' href='style/QuizLandingPage.css'>");
 		out.println("<title>All Quizzes</title>");
 		out.println("</head>");
@@ -53,6 +53,8 @@ public class QuizLandingPage extends HttpServlet {
 	    out.println("<div class='container'>");
 	    out.println("<h1>QuizSite</h1>");
 	    out.println("</div>");
+	    
+	    
 	    
 	    out.println("<div class='navbar'>");
     	out.println("<div class='navbar-inner'>");
@@ -69,9 +71,15 @@ public class QuizLandingPage extends HttpServlet {
     	out.println("</ul>");
     	out.println("</div>");
     	out.println("</div>");
+    	
+    	
+    	out.println("<div class='hero-unit'>");
+    	out.println("<h1>All Quizzes</h1>");
+    	out.println("<p>Have a look at our awesome selection of quizzes!  Search based on a category or tag, or just pick one from the list below.</p>");
+    	out.println("</div>");
 		
     	out.println("<div class='row'>");
-    	out.println("<div class='span6'>");
+    	out.println("<div class='span6' style='text-align: center;'>");
 		out.println("<form action =\"QuizSelectByCatServlet\" method=\"GET\">");
 		out.println("<p>Search by Category:</p>");
 		out.println("<select name=\"category\">");
@@ -85,7 +93,7 @@ public class QuizLandingPage extends HttpServlet {
 		out.println("<input type=\"submit\" value = \"Go\" />");
 		out.println("</form>");
 		out.println("</div>");
-		out.println("<div class='span6'>");
+		out.println("<div class='span6' style='text-align: center;'>");
 		out.println("<form action =\"QuizSelectByTagsServlet\" method=\"GET\">");
 		out.println("<p>Search by tag:  <input type=\"text\" name=\"tag\" />");
 		out.println("<input type=\"submit\" value = \"Go\" /></p>");
@@ -93,8 +101,10 @@ public class QuizLandingPage extends HttpServlet {
 		out.println("</div>");
 		out.println("</div>");
 		
-		out.println("<h1>All Quizzes</h1>");
-		out.println("<p>Quizzes available:</p>");
+
+		out.println("<div>");
+		out.println("<div class='row'>");
+		out.println("<div class='span12'>");
 		out.println("<ul>");
 		@SuppressWarnings("unchecked")
 		ArrayList<Quiz> allQuizzes = (ArrayList<Quiz>) request.getServletContext().getAttribute("allQuizzes");
@@ -111,7 +121,12 @@ public class QuizLandingPage extends HttpServlet {
 				out.println("<input type=\"submit\" value=\"" + quiz.getTitle() + "\"/>");
 			}
 			out.println("</li>");
-			out.println("<li>BY: " + quiz.getCreator() + "</li><li>" + quiz.getDescription() + "</li><ul>");
+			
+			if (user == null) out.println("<li>BY: " + quiz.getCreator() + "</li><li>" + quiz.getDescription() + "</li><ul>");
+			else {
+				out.println("<li>BY: <a href='user.jsp?whoseProfile=" + quiz.getCreator() + "'>" + quiz.getCreator() + "</a></li><li>" + quiz.getDescription() + "</li><ul>");
+			}
+			
 			out.println("</form>");
 			out.println("</li>");
 			out.println("</div>");
@@ -120,6 +135,9 @@ public class QuizLandingPage extends HttpServlet {
 		out.println("<form action =\"index.jsp\">");
 		out.println("<input type=\"submit\" value=\"Back To Homepage\"/>");
 		out.println("</form>");
+		out.println("</div>");
+		out.println("</div>");
+		out.println("</div>");
 		out.println("<script src='http://code.jquery.com/jquery-1.10.1.js'></script>");
 		out.println("<script src='js/bootstrap.js'></script>");
 		out.println("</body>");

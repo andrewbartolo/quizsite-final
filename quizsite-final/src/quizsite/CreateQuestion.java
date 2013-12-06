@@ -48,8 +48,16 @@ public class CreateQuestion extends HttpServlet {
 		int type = Integer.parseInt(request.getParameter("questiontype"));
 		String mark = request.getParameter("score");
 		double score = 0.0;
+
+		if (!mark.isEmpty()){
+			try {
+				score = Double.parseDouble(request.getParameter("score"));
+			}
+			catch (NumberFormatException ignored) { }
+		}
 		if (!mark.isEmpty() && isNumeric(mark)){
 			score = Double.parseDouble(request.getParameter("score"));
+
 		}
 		List<String> answers = new ArrayList<String>();
 
