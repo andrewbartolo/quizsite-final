@@ -51,7 +51,7 @@ public class QuizLandingPage extends HttpServlet {
 		out.println("<body>");
 		
 	    out.println("<div class='container'>");
-	    out.println("<h1>QuizSite</h1>");
+	    out.println("<h1>Quizzap!</h1>");
 	    out.println("</div>");
 	    
 	    
@@ -76,6 +76,8 @@ public class QuizLandingPage extends HttpServlet {
     	out.println("<div class='hero-unit'>");
     	out.println("<h1>All Quizzes</h1>");
     	out.println("<p>Have a look at our awesome selection of quizzes!  Search based on a category or tag, or just pick one from the list below.</p>");
+    	if (user == null) out.println("<a href='#' class='btn btn-large btn-danger'>Create a Quiz</a>");
+    	else out.println("<a href='quiz_setup.jsp' class='btn btn-large btn-success'>Create a Quiz</a>");
     	out.println("</div>");
 		
     	out.println("<div class='row'>");

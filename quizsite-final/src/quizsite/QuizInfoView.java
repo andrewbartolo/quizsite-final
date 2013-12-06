@@ -61,7 +61,7 @@ public class QuizInfoView extends HttpServlet {
         		out.println("<body>");
         		
         	    out.println("<div class='container'>");
-        	    out.println("<h1>QuizSite</h1>");
+        	    out.println("<h1>Quizzap!</h1>");
         	    out.println("</div>");
         	    
         	    out.println("<div class='navbar'>");

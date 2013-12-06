@@ -38,7 +38,7 @@
 <body>
 
 <div class='container'>
- <h1>QuizSite</h1>
+ <h1>Quizzap!</h1>
 </div>
 
 <div class='navbar'>
@@ -71,11 +71,11 @@
 			        + "<ul class='dropdown-menu' role='menu'>";
 			        
 			        for (History h : user.getTakenQuizzes()) {
-			        	str += "<li><a href='#'>Quiz " + h.getQuizId() + "</a></li>";
+			        	str += "<li><a href='#'>" + User.getQuizTitle(h.getQuizId()) + "</a></li>";
 			        }
 			        
 			        str += "</ul>"
-			        + "</div><!-- /btn-group -->";
+			        + "</div>";
 				
 			    out.println(str);
 				out.println("<a href='ResponderServlet?action=removeFriend&friendToRemove=" + whoseProfile
@@ -207,7 +207,7 @@
 
 <hr>
 <div class="footer">
-	<p>&copy; 2013 The QuizSite Team.  All rights reserved.</p>
+	<p>&copy; 2013 The Quizzap! Team.  All rights reserved.</p>
 </div>
 
 <script src='http://code.jquery.com/jquery-1.10.1.js'></script>

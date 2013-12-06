@@ -23,7 +23,7 @@
 </head>
 <body>
 <div class='container'>
- <h1>QuizSite</h1>
+ <h1>Quizzap!</h1>
 </div>
 
 <div class='navbar'>
@@ -63,7 +63,7 @@
 
 
 <div class="footer">
-	<p>&copy; 2013 The QuizSite Team.  All rights reserved.</p>
+	<p>&copy; 2013 The Quizzap! Team.  All rights reserved.</p>
 </div>
 
 <script src='http://code.jquery.com/jquery-1.10.1.js'></script>
