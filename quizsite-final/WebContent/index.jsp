@@ -69,19 +69,6 @@
 				out.println("<input type=\"submit\" value=\"" + quiz.getTitle() + "\"/>");
 			}
 
-			
-			String str = "<input type='submit' value='" + quiz.getTitle() + "'";
-			if (user == null) str += " disabled";
-			str += ">";
-			
-			out.println(str);
-
-			out.println("</li>");
-
-			out.println("</form>");
-
-			if (user != null) out.println("</form>");
-
 			out.println("</div>");
 	}
 		%>
