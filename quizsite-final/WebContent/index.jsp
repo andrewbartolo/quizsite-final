@@ -96,10 +96,16 @@
 			
 			Date d = new Date(a.getTime());
 			SimpleDateFormat dayFt = new SimpleDateFormat("E M/dd ' at ' h:mm a");
-		
-			out.println("On " + dayFt.format(d) + ", " + a.getUserName()
-					+ " posted:<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>" + a.getContent() + "</i>"
-					+ " <br><br>");
+			
+			String str = "On " + dayFt.format(d) + ", ";
+			if (user != null) str += "<a href='user.jsp?whoseProfile=" + a.getUserName() + "'>";
+			
+			str += a.getUserName();
+			if (user != null) str += "</a>";
+			str += " posted:<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>" + a.getContent() + "</i>"
+			+ " <br><br>";
+			
+			out.println(str);
 		}
 		%>
 	</div>

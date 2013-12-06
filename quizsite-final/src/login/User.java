@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import quizsite.DatabaseUtils;
+import quizsite.Quiz;
 
 
 public class User {

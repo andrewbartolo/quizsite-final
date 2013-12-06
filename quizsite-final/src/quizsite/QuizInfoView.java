@@ -31,6 +31,13 @@ public class QuizInfoView extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    
+    private String makeLink(String username) {
+    	String str = "<a href='user.jsp?whoseProfile=" + username + "'>";
+    	str += username + "</a>";
+    	
+    	return str;
+    }
 
         /**
          * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -145,7 +152,7 @@ public class QuizInfoView extends HttpServlet {
                         while (rs2.next()) {
                                 out.println("<tr>");
                                 out.println("<td>");
-                                out.println(rs2.getString(1));
+                                out.println(makeLink(rs2.getString(1)));
                                 out.println("</td>");
                                 out.println("<td>");
                                 out.println(rs2.getString(3));
@@ -177,7 +184,7 @@ public class QuizInfoView extends HttpServlet {
                         while (rs3.next()) {
                                 out.println("<tr>");
                                 out.println("<td>");
-                                out.println(rs3.getString(1));
+                                out.println(makeLink(rs3.getString(1)));
                                 out.println("</td>");
                                 out.println("<td>");
                                 out.println(rs3.getString(3));
@@ -208,7 +215,7 @@ public class QuizInfoView extends HttpServlet {
                         while (rs4.next()) {
                                 out.println("<tr>");
                                 out.println("<td>");
-                                out.println(rs4.getString(1));
+                                out.println(makeLink(rs4.getString(1)));
                                 out.println("</td>");
                                 out.println("<td>");
                                 out.println(rs4.getString(3));
