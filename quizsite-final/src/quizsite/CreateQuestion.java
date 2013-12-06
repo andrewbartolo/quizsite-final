@@ -162,7 +162,7 @@ public class CreateQuestion extends HttpServlet {
 		request.getSession().setAttribute("quiz",quiz);
 
 		if (finished.equals("Next Question")){
-		RequestDispatcher dispatch = request.getRequestDispatcher("question_types.html");
+		RequestDispatcher dispatch = request.getRequestDispatcher("question_types.jsp");
 		dispatch.forward(request, response);
 		}else{
 			RequestDispatcher dispatch = request.getRequestDispatcher("Quiz_creation_summary.jsp");
