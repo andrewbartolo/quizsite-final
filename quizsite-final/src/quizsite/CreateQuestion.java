@@ -49,7 +49,10 @@ public class CreateQuestion extends HttpServlet {
 		String mark = request.getParameter("score");
 		double score = 0.0;
 		if (!mark.isEmpty()){
-			score = Double.parseDouble(request.getParameter("score"));
+			try {
+				score = Double.parseDouble(request.getParameter("score"));
+			}
+			catch (NumberFormatException ignored) { }
 		}
 		List<String> answers = new ArrayList<String>();
 

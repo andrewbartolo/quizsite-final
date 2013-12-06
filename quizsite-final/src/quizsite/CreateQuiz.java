@@ -105,7 +105,7 @@ public class CreateQuiz extends HttpServlet {
 		
 		request.getSession().setAttribute("quiz",quiz);
 		
-		RequestDispatcher dispatch = request.getRequestDispatcher("question_types.html");
+		RequestDispatcher dispatch = request.getRequestDispatcher("question_types.jsp");
 		dispatch.forward(request, response);
 		
 		
