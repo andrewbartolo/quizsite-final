@@ -62,15 +62,13 @@
 			out.println("<input name='quizID' type='hidden' value='" + quiz.getQuizID() + "'>");
 			out.println("<ul style='list-style: none;'>");
 			out.println("<li>");
-			
-			String str = "<input type='submit' value='" + quiz.getTitle() + "'";
-			if (user == null) str += " disabled";
-			str += ">";
-			
-			out.println(str);
-			out.println("</li>");
-			if (user != null) out.println("</form>");
-			//out.println("</li>");
+
+			if (user == null) {
+				out.println("<button type=\"button\" disabled>" + quiz.getTitle() + "</button>");
+			} else {
+				out.println("<input type=\"submit\" value=\"" + quiz.getTitle() + "\"/>");
+			}
+
 			out.println("</div>");
 	}
 		%>
@@ -78,10 +76,10 @@
 	<div class='span4'>
 	<h3 class="muted text-center">Most Popular Quizzes</h3>
 	<%
-		ArrayList<Integer[]> quizStats = User.getQuizTakenTimes();
+		ArrayList<String[]> quizStats = User.getQuizTakenTimes();
 		
 		for (int i = 0; i < quizStats.size(); ++i) {
-			Integer[] iArray = quizStats.get(i);
+			String[] iArray = quizStats.get(i);
 			
 			
 			

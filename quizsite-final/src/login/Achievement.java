@@ -120,7 +120,7 @@ public class Achievement {
 		int numQuizTaken = 0;
 		try {
 			if (rs2.next() ) {
-				numQuizTaken = Integer.parseInt(rs.getString("count(*)"));
+				numQuizTaken = Integer.parseInt(rs2.getString("count(*)"));
 			}
 			
 		} catch (SQLException e) {
@@ -148,7 +148,7 @@ public class Achievement {
 		int numTopScore = 0;
 		try {
 			if (rs3.next() ) {
-				numQuizTaken = Integer.parseInt(rs.getString("count(*)"));
+				numQuizTaken = Integer.parseInt(rs3.getString("count(H1.quizID)"));
 			}
 			
 		} catch (SQLException e) {
