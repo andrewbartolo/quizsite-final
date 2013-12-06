@@ -148,7 +148,7 @@ public class Achievement {
 		int numTopScore = 0;
 		try {
 			if (rs3.next() ) {
-				numQuizTaken = Integer.parseInt(rs3.getString("count(H1.quizID)"));
+				numTopScore = Integer.parseInt(rs3.getString("count(H1.quizID)"));
 			}
 			
 		} catch (SQLException e) {

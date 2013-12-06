@@ -14,6 +14,27 @@
 	
 	ArrayList<String[]> leaderboardContents = user.getLeaderboardContents();
 %>
+<%!
+	private static String makeLink(String username, User user) {
+		if (user != null) {
+	    	String str = "<span class=''><a href='user.jsp?whoseProfile=" + username + "'>";
+	    	str += username + "</a></span>";
+	    	
+	    	return str;
+		}
+		return username;
+    }
+
+	private static String makeQuizLink(String quizID, String quizName, User user) {
+		if (user != null) {
+	    	String str = "<span class=''><a href='QuizInfoServlet?quizID=" + quizID + "'>";
+	    	str += quizName + "</a></span>";
+	    	
+	    	return str;
+		}
+		return quizName;
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +76,7 @@
 		<h4 class="muted text-center">Best Scores on Quizzes</h4>
 		<%
 			for (String[] sArray : leaderboardContents) {
-			out.println("<b>" + sArray[2] + "</b> scored <b>" + sArray[3] + "</b> on <b>" + sArray[1] + "</b><br>");
+			out.println("<b>" + makeLink(sArray[2], user) + "</b> scored <b>" + sArray[3] + "</b> on <b>" + makeQuizLink(sArray[0], sArray[1], user) + "</b><br>");
 			}
 		%>
 	</div>
