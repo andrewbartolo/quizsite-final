@@ -112,11 +112,11 @@ public class QuizLandingPage extends HttpServlet {
 		ArrayList<Quiz> allQuizzes = (ArrayList<Quiz>) request.getServletContext().getAttribute("allQuizzes");
 		for (Quiz quiz : allQuizzes) {
 			out.println("<div class='quiz'>");
-			out.println("<li>");
+			//out.println("<li>");
 			out.println("<form action=\"QuizInfoServlet\" method=\"GET\">");
 			out.println("<input name=\"quizID\" type=\"hidden\" value=\"" + quiz.getQuizID() + "\"/>");
 			out.println("<ul style=\"list-style: none;\">");
-			out.println("<li>");
+			//out.println("<li>");
 			if (user == null) {
 				out.println("<button type=\"button\" disabled>" + quiz.getTitle() + "</button>");
 			} else {

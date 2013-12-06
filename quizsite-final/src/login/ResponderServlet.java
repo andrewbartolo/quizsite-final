@@ -60,6 +60,18 @@ public class ResponderServlet extends HttpServlet {
 			Message.sendMessage(m);
 			dispatch = request.getRequestDispatcher("user.jsp");
 		}
+		else if (action.equals("challenge")) {
+			String userToChallenge = (String)request.getParameter("userToChallenge");
+			int quizToChallenge= Integer.parseInt((String)request.getParameter("quizToChallenge"));
+			
+			String content = "I scored " + User.getUserBestScore(user.getUserName(), quizToChallenge);
+			content += " on " + User.getQuizTitle(quizToChallenge) + ".  Can you beat that?" + quizToChallenge;
+			
+			Message.sendMessage(new Message(user.getUserName(), userToChallenge, Message.MESSAGE_CHALLENGE, content, false));
+			
+			// go back to the same page
+			dispatch = request.getRequestDispatcher("user.jsp?whoseProfile=" + userToChallenge);
+		}
 		
 		
 		dispatch.forward(request, response);
