@@ -121,7 +121,12 @@ public class QuizLandingPage extends HttpServlet {
 				out.println("<input type=\"submit\" value=\"" + quiz.getTitle() + "\"/>");
 			}
 			out.println("</li>");
-			out.println("<li>BY: " + quiz.getCreator() + "</li><li>" + quiz.getDescription() + "</li><ul>");
+			
+			if (user == null) out.println("<li>BY: " + quiz.getCreator() + "</li><li>" + quiz.getDescription() + "</li><ul>");
+			else {
+				out.println("<li>BY: <a href='user.jsp?whoseProfile=" + quiz.getCreator() + "'>" + quiz.getCreator() + "</a></li><li>" + quiz.getDescription() + "</li><ul>");
+			}
+			
 			out.println("</form>");
 			out.println("</li>");
 			out.println("</div>");

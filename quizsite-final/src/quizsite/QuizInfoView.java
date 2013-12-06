@@ -75,7 +75,7 @@ public class QuizInfoView extends HttpServlet {
               
                 out.println("<h1>" + quiz.getTitle() + "</h1>");
                 out.println("<h3>" + quiz.getDescription() + "</h3>");
-                out.println("<p>Created by: " + quiz.getCreator() + "</p>");
+                out.println("<p>Created by: <a href='user.jsp?whoseProfile=" + quiz.getCreator() + "'>" + quiz.getCreator() + "</a></p>");
                 
                 if (quiz.random)
                         Collections.shuffle(quiz.qlist);
