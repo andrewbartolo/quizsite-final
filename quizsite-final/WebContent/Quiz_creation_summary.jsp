@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class='container'>
- <h1>QuizSite</h1>
+ <h1>Quizzap!</h1>
 </div>
 
 <div class='navbar'>

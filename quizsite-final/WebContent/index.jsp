@@ -12,12 +12,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel='stylesheet' href='css/bootstrap.css' type='text/css'>
-<title>QuizSite</title>
+<title>Quizzap!</title>
 </head>
 <body>
 
 <div class='container'>
- <h1>QuizSite</h1>
+ <h1>Quizzap!</h1>
 </div>
 
 <div class='navbar'>
@@ -39,7 +39,7 @@
 </div>
 
 <div class='hero-unit'>
-	<h1>Welcome to QuizSite, <%= username %>!</h1>
+	<h1>Welcome to Quizzap!, <%= username %>!</h1>
 	<p>Here, you'll find quizzes on a wide range of topics from our many users.
     	Log in to create your own, or take a few existing quizzes and sign up later.</p>
     <a href='QuizLandingPage' class='btn btn-large btn-primary'>Take a Quiz</a>
@@ -76,11 +76,12 @@
 	<div class='span4'>
 	<h3 class="muted text-center">Most Popular Quizzes</h3>
 	<%
-		ArrayList<Integer[]> quizStats = User.getQuizTakenTimes();
+		ArrayList<String[]> quizStats = User.getQuizTakenTimes();
 		
-		for (int i = 0; i < quizStats.size(); ++i) {
-			Integer[] iArray = quizStats.get(i);
-			
+
+		for (int i = 0; i < Math.min(5, quizStats.size()); ++i) {
+			String[] iArray = quizStats.get(i);
+			out.println(iArray[1] + " - Taken <b>" + iArray[0] + "</b> times <br><br>");
 			
 			
 		}
@@ -94,10 +95,16 @@
 			
 			Date d = new Date(a.getTime());
 			SimpleDateFormat dayFt = new SimpleDateFormat("E M/dd ' at ' h:mm a");
-		
-			out.println("On " + dayFt.format(d) + ", " + a.getUserName()
-					+ " posted:<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>" + a.getContent() + "</i>"
-					+ " <br><br>");
+			
+			String str = "On " + dayFt.format(d) + ", ";
+			if (user != null) str += "<a href='user.jsp?whoseProfile=" + a.getUserName() + "'>";
+			
+			str += a.getUserName();
+			if (user != null) str += "</a>";
+			str += " posted:<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>" + a.getContent() + "</i>"
+			+ " <br><br>";
+			
+			out.println(str);
 		}
 		%>
 	</div>

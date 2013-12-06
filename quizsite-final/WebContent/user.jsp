@@ -25,6 +25,7 @@
 	Achievement.checkNewAchievements(whoseProfile);
 	ArrayList<Achievement> achievements = Achievement.getAllAchievements(whoseProfile);
 	ArrayList<History> history = History.getTakenQuizzes(whoseProfile);
+	@SuppressWarnings("unchecked")
 	ArrayList<Quiz> quizzes = (ArrayList<Quiz>)application.getAttribute("allQuizzes");
 %>
 <!DOCTYPE html>
@@ -37,7 +38,7 @@
 <body>
 
 <div class='container'>
- <h1>QuizSite</h1>
+ <h1>Quizzap!</h1>
 </div>
 
 <div class='navbar'>
@@ -64,9 +65,22 @@
 		else {
 			out.println("<h1>" + whoseProfile + "'s User Profile</h1>");
 			if (user.isFriendWith(whoseProfile)) {
-				out.println("<a href='#' class='btn btn-large btn-warning'>Challenge to a Quiz</a>");
+				  String str = "<div class='btn-group'>"
+			        + "<button type='button' class='btn btn-large btn-warning dropdown-toggle' data-toggle='dropdown'>"
+			        + "Challenge to a Quiz <span class='caret'></span></button>"
+			        + "<ul class='dropdown-menu' role='menu'>";
+			        
+			        for (History h : user.getTakenQuizzes()) {
+			        	str += "<li><a href='#'>" + User.getQuizTitle(h.getQuizId()) + "</a></li>";
+			        }
+			        
+			        str += "</ul>"
+			        + "</div>";
+				
+			    out.println(str);
 				out.println("<a href='ResponderServlet?action=removeFriend&friendToRemove=" + whoseProfile
 						+ "' class='btn btn-large btn-danger'>Remove Friend</a>");
+				out.println("</div>");
 			}
 			else {
 				out.println("<a href='#' class='btn btn-large btn-primary'>Send Friend Request</a>");
@@ -193,7 +207,7 @@
 
 <hr>
 <div class="footer">
-	<p>&copy; 2013 The QuizSite Team.  All rights reserved.</p>
+	<p>&copy; 2013 The Quizzap! Team.  All rights reserved.</p>
 </div>
 
 <script src='http://code.jquery.com/jquery-1.10.1.js'></script>
