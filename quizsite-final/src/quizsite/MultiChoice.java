@@ -66,9 +66,15 @@ public class MultiChoice extends Question{
 			grade+=score;
 			return true;
 		}
-		if (possibleAnswers.get(0) == ""){
-			grade +=score;
-			return true;
+		for (int i = 0; i < possibleAnswers.size();i++){
+			if (!isNumeric(possibleAnswers.get(i))){
+				grade +=score;
+				return true;
+			}
+			if (Integer.parseInt(possibleAnswers.get(i)) < 0 || Integer.parseInt(possibleAnswers.get(i)) > options.size()){
+				grade+=score;
+				return true;
+			}
 		}
 		possAnswers.addAll(possibleAnswers);
 		for (int i = 0; i < response.size(); ++i) {
@@ -94,6 +100,11 @@ public class MultiChoice extends Question{
 	@Override
 	public int getNumAns(){
 		return numAns;
+	}
+	
+	public static boolean isNumeric(String str)
+	{
+	  return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
 	}
 
 }
