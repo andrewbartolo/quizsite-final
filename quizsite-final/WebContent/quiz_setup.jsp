@@ -45,6 +45,11 @@
 </div>
 
 <h1>Welcome to Quiz Creating Center</h1>
+
+<form action="load_xml.html">
+<input type="submit" value="Load Quiz from XML File!"/>
+</form>
+
 <h3>Please fill out the following fields to create a new quiz:</p></h3>
 
 <form action="CreateQuiz" method="post">

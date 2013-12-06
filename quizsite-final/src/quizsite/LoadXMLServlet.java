@@ -85,8 +85,8 @@ public class LoadXMLServlet extends HttpServlet {
 				questionID = rs2.getString(1);
 			}
 			
-			String workingDirectory = "C://Users/Victoria/workspace/quizsite4/"; // CHANGE DEPENDING ON COMPUTER YOU USE
-			File fXmlFile = new File(workingDirectory + request.getParameter("fileName"));
+			//String workingDirectory = "C://Users/Victoria/workspace/quizsite4/"; // CHANGE DEPENDING ON COMPUTER YOU USE
+			File fXmlFile = new File(request.getParameter("fileName"));
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
