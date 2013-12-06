@@ -236,7 +236,7 @@ public class User {
     public static ArrayList<String[]> getQuizTakenTimes() {
     	ArrayList<String[]> result = new ArrayList<String[]>();
     	
-    	String query = "select QuizHistory.quizID, title, count(*) from QuizHistory, quizzes where quizzes.quizID=QuizHistory.quizID group by quizID order by quizID;";
+    	String query = "select QuizHistory.quizID, title, count(*) from QuizHistory, quizzes where quizzes.quizID=QuizHistory.quizID group by quizID order by count(*) desc;";
     	
     	ResultSet rs = DBConnection.getResult(query);
         try {
