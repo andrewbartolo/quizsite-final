@@ -170,11 +170,12 @@ public class QuestionResponse extends Question{
 				return false;
 			} else {
 				Map<Integer, Set<String>> possAnswers = new HashMap<Integer, Set<String>>();
-				Set <String> answerSet = new HashSet<String>();
+				
 				
 				for (int i = 0; i < possibleMultAnswers.size();i++){
-
+						Set <String> answerSet = new HashSet<String>();
 						answerSet.addAll(possibleMultAnswers.get(i));
+						//System.out.println(answerSet);
 						possAnswers.put(i, answerSet);
 				}
 				Set<String> matchedAnswers = new HashSet<String>();
@@ -189,6 +190,7 @@ public class QuestionResponse extends Question{
 						if (possAnswers.get(j).contains(response.get(i)) && !matchedIndex.contains(j)) {
 							grade += score / numAns;
 							matchedAnswers.add(response.get(i));
+							//System.out.println(j);
 							matchedIndex.add(j);
 							break;
 						}
