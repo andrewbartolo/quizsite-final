@@ -47,19 +47,19 @@
 <h3>Please fill out the following fields to create a question:</p></h3>
 
 <form action="CreateQuestion" method="post">
-<p>Query: <input type="text" size="100" name="query" /></p>
+<p>Query: <input type="text" maxlength="100" name="query" /></p>
 
 <p>Does the responses need to be in a particular order? </p>
 <input type="radio" name="ordered" value="true">Yes<br>
 <input type="radio" name="ordered" value="false" checked>No<br>
 
-<p>Please specify the number of responses required for answering this question? <input type="text" size ="4" name="numAns" /></p>
+<p>Please specify the number of responses required for answering this question? <input type="text" maxlength="4" name="numAns" /></p>
 
 <p>Legal Answers (please list all the legal answers for each slot, separated by ','):</p>
 <% 
 	for (int i = 0; i < 20; i++){  //maximum 20 answers available
 %>	
-	<p> <input type="text" size ="200" name= <%= "answer"+String.valueOf(i)%> /></p>
+	<p> <input type="text" maxlength="200" name= <%= "answer"+String.valueOf(i)%> /></p>
 <% }%>
 
 

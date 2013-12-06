@@ -47,9 +47,9 @@
 <h3>Please fill out the following fields to create a question:</p></h3>
 
 <form action="CreateQuestion" method="post">
-<p>Picture Source URL: <input type="text" size = "100" name="query" /></p>
-<p>Legal Answers (please list all the legal answers, separated by ','): <input type="text" size = "200" name="answer" /></p>
-<p>Maximum score (please use numbers, e.g. 1): <input type="text" size = "4" name="score" /></p>
+<p>Picture Source URL: <input type="text" maxlength="100" name="query" /></p>
+<p>Legal Answers (please list all the legal answers, separated by ','): <input type="text" maxlength="200" name="answer" /></p>
+<p>Maximum score (please use numbers, e.g. 1): <input type="text" maxlength="4" name="score" /></p>
 <input type="submit" name = "sb" value = "Next Question">
 <input type="submit" name = "sb" value = "Submit Quiz">
 <input name="questiontype" type="hidden" value="4"></input>

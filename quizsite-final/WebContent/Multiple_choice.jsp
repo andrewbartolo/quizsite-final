@@ -47,14 +47,14 @@
 <h3>Please fill out the following fields to create a question:</p></h3>
 
 <form action="CreateQuestion" method="post">
-<p>Query: <input type="text" name="query" /></p>
+<p>Query: <input type="text" maxlength="100" name="query" /></p>
 <p>Options (maximum 4 options): </p>
-<p><input type="text" size = "50" name="option0" /></p>
-<p><input type="text" size = "50" name="option1" /></p>
-<p><input type="text" size = "50" name="option2" /></p>
-<p><input type="text" size = "50" name="option3" /></p>
-<p>Answers (please list all the correct answers in numbers separated by ',', e.g. 1,2): <input type="text" size = "8" name="answer" /></p>
-<p>Maximum score (please use numbers, e.g. 1): <input type="text" size = "4" name="score" /></p>
+<p><input type="text" maxlength="50" name="option0" /></p>
+<p><input type="text" maxlength="50" name="option1" /></p>
+<p><input type="text" maxlength="50" name="option2" /></p>
+<p><input type="text" maxlength="50" name="option3" /></p>
+<p>Answers (please list all the correct answers in numbers separated by ',', e.g. 1,2): <input type="text" maxlength = "8" name="answer" /></p>
+<p>Maximum score (please use numbers, e.g. 1): <input type="text" maxlength = "4" name="score" /></p>
 <input type="submit" name = "sb" value = "Next Question">
 <input type="submit" name = "sb" value = "Submit Quiz">
 <input name="questiontype" type="hidden" value="3"></input>
