@@ -68,7 +68,7 @@
 			} else {
 				out.println("<input type=\"submit\" value=\"" + quiz.getTitle() + "\"/>");
 			}
-
+			out.println("</form>");
 			out.println("</div>");
 	}
 		%>
@@ -81,7 +81,22 @@
 
 		for (int i = 0; i < Math.min(5, quizStats.size()); ++i) {
 			String[] iArray = quizStats.get(i);
-			out.println(iArray[1] + " - Taken <b>" + iArray[2] + "</b> times <br><br>");
+			
+			
+			out.println("<div class='quiz'>");
+			
+			
+			if (user != null) out.println("<form action='QuizInfoServlet' method='GET'>");
+			out.println("<input name='quizID' type='hidden' value='" + iArray[0] + "'>");
+			out.println("<ul style='list-style: none;'>");
+
+			if (user == null) {
+				out.println("<button type=\"button\" disabled>" + iArray[1] + "</button>");
+			} else {
+				out.println("<input type=\"submit\" value=\"" + iArray[1] + "\"/>");
+			}
+			out.println("</form>");
+			out.println("</div>");
 			
 			
 		}
