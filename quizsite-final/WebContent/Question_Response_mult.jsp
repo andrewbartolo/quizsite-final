@@ -47,23 +47,23 @@
 <h3>Please fill out the following fields to create a question:</p></h3>
 
 <form action="CreateQuestion" method="post">
-<p>Query: <input type="text" name="query" /></p>
+<p>Query: <input type="text" maxlength="100" name="query" /></p>
 
 <p>Does the responses need to be in a particular order? </p>
 <input type="radio" name="ordered" value="true">Yes<br>
 <input type="radio" name="ordered" value="false" checked>No<br>
 
-<p>Please specify the number of responses required for answering this question? <input type="text" name="numAns" /></p>
+<p>Please specify the number of responses required for answering this question? <input type="text" maxlength="4" name="numAns" /></p>
 
 <p>Legal Answers (please list all the legal answers for each slot, separated by ','):</p>
 <% 
 	for (int i = 0; i < 20; i++){  //maximum 20 answers available
 %>	
-	<p> <input type="text" name= <%= "answer"+String.valueOf(i)%> /></p>
+	<p> <input type="text" maxlength="200" name= <%= "answer"+String.valueOf(i)%> /></p>
 <% }%>
 
 
-<p>Maximum score (please use numbers, e.g. 1,2,3, etc.): <input type="text" name="score" /></p>
+<p>Maximum score (please use numbers, e.g. 1): <input type="text" size="4" name="score" /></p>
 <input type="submit" name = "sb" value = "Next Question">
 <input type="submit" name = "sb" value = "Submit Quiz">
 <input name="questiontype" type="hidden" value="1"></input>

@@ -48,11 +48,16 @@ public class CreateQuestion extends HttpServlet {
 		int type = Integer.parseInt(request.getParameter("questiontype"));
 		String mark = request.getParameter("score");
 		double score = 0.0;
+
 		if (!mark.isEmpty()){
 			try {
 				score = Double.parseDouble(request.getParameter("score"));
 			}
 			catch (NumberFormatException ignored) { }
+		}
+		if (!mark.isEmpty() && isNumeric(mark)){
+			score = Double.parseDouble(request.getParameter("score"));
+
 		}
 		List<String> answers = new ArrayList<String>();
 
@@ -92,7 +97,7 @@ public class CreateQuestion extends HttpServlet {
 			query = request.getParameter("query");
 			boolean ordered = request.getParameter("ordered").equals("true");
 			int numAns = 1;
-			if (request.getParameter("numAns") !=""){
+			if (isNumeric(request.getParameter("numAns"))){
 				numAns = Integer.parseInt(request.getParameter("numAns"));
 				if (numAns > 20) numAns = 20;
 				if (numAns < 1) numAns = 1;
@@ -164,6 +169,11 @@ public class CreateQuestion extends HttpServlet {
 			dispatch.forward(request, response);
 		}
 		
+	}
+	
+	public static boolean isNumeric(String str)
+	{
+	  return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
 	}
 
 }

@@ -48,8 +48,8 @@
 <h3>Please fill out the following fields to create a new quiz:</p></h3>
 
 <form action="CreateQuiz" method="post">
-<p>Title (the title of your quiz): <input type="text" name="title" /></p>
-<p>Description (a short description of the quiz content):  <input type="text" name="description" /></p>
+<p>Title (the title of your quiz): <input type="text" maxlength="100" name="title" /></p>
+<p>Description (a short description of the quiz content):  <input type="text" maxlength="200" name="description" /></p>
 <p>Please specify the category of the quiz: </p>
 <select name="category">
 <option value="history">History</option>
@@ -59,7 +59,7 @@
 <option value="sports">Sports</option>
 <option value="others">Others</option>
 </select>
-<p>Tags (please list all the tags, separated by ','): <input type="text" name="tags" /></p>
+<p>Tags (please list all the tags, separated by ','): <input type="text" maxlength="50" name="tags" /></p>
 <p>Do you want to randomize the order of questions? </p>
 <input type="radio" name="random" value="true">Yes<br>
 <input type="radio" name="random" value="false" checked>No<br>
