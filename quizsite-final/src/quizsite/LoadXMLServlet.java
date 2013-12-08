@@ -106,7 +106,7 @@ public class LoadXMLServlet extends HttpServlet {
 				if (practice.length() == 0)
 					practice = "false";
 				String title = doc.getElementsByTagName("title").item(0).getTextContent();
-				String category = doc.getElementsByTagName("category").item(0).getTextContent();
+				//String category = doc.getElementsByTagName("category").item(0).getTextContent();
 				String description = doc.getElementsByTagName("description").item(0).getTextContent();
 				
 				NodeList questionList = doc.getElementsByTagName("question");
@@ -201,7 +201,7 @@ public class LoadXMLServlet extends HttpServlet {
 						DatabaseUtils.runInsertUpdateQuery(stmt, questionInsertQuery);
 					}
 				}
-				String[] quizInsertArgs = {quizID, user.getUserName(), title, category, description, Integer.toString(numQuestions), random, onepage, immcorr, practice};
+				String[] quizInsertArgs = {quizID, user.getUserName(), title, "Others", description, Integer.toString(numQuestions), random, onepage, immcorr, practice};
 				String quizInsertQuery = DatabaseUtils.constructInsertQuery("quizzes", quizInsertArgs);
 				DatabaseUtils.runInsertUpdateQuery(stmt, quizInsertQuery);
 			}
@@ -210,7 +210,7 @@ public class LoadXMLServlet extends HttpServlet {
 		}
 		out.println("A quiz has successfully been created with the xml file.");
 		out.println("</br>");
-		out.println("<a href=\"QuizLandingPage\">Return to All Quizzes</a>");
+		out.println("<a href=\"RefreshAllQuiz\">Return to All Quizzes</a>");
 		out.println("</body>");
 		out.println("</html>");
 	}
